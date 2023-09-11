@@ -1,0 +1,29 @@
+{
+  "name": "astronaute-eleven-labs",
+  "version": "1.0.0",
+  "description": "cata for eleven labs",
+  "main": "./framework/server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zikowashere/Astronaute-Eleven-Labs.git"
+  },
+  "author": "Zakaria Daouma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zikowashere/Astronaute-Eleven-Labs/issues"
+  },
+  "homepage": "https://github.com/zikowashere/Astronaute-Eleven-Labs#readme",
+  "devDependencies": {
+    "@types/node": "^20.6.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "eslint": "^8.49.0"
+  }
+}
