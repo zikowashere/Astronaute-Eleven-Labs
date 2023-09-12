@@ -1,13 +1,13 @@
 import IAstronaut from "../ports/IAstronaut";
 
 export default class DeleteAstronaut {
-  astronauteRepository: IAstronaut;
+  AstronauteRepository: IAstronaut;
 
   constructor(astronauteRepository: IAstronaut) {
-    this.astronauteRepository = astronauteRepository;
+    this.AstronauteRepository = astronauteRepository;
   }
 
   async deleteAstronaute(id: unknown) {
-    return await this.astronauteRepository.deleteAstronaut(id);
+    return await this.AstronauteRepository.deleteAstronaut(id);
   }
 }

@@ -2,13 +2,13 @@ import { Astronaut } from "../entities/Astronaut";
 import IAstronaut from "../ports/IAstronaut";
 
 export default class AddAstronaut {
-  astronauteRepository: IAstronaut;
+  AstronauteRepository: IAstronaut;
 
   constructor(astronauteRepository: IAstronaut) {
-    this.astronauteRepository = astronauteRepository;
+    this.AstronauteRepository = astronauteRepository;
   }
 
   async addAstronaute(astronaut: Astronaut) {
-    return await this.astronauteRepository.addAstronaut(astronaut);
+    return await this.AstronauteRepository.addAstronaut(astronaut);
   }
 }
