@@ -1,9 +1,8 @@
-import AstronautImpl from "../../application/adapters/AstronautImpl";
-import { AstronautDataSource } from "../../application/ports/AstronautDataSource";
-import { Astronaut } from "../../domain/entities/Astronaut";
+import { AstronauteRepository } from "../../astronaut/ports/AstronauteRepository";
+import { Astronaut } from "../../astronaut/entities/Astronaut";
 import astronaut from "../schema/astronautSchema";
 
-export class AstronautRepo implements AstronautDataSource {
+export class AstronautMongodbRepo implements AstronauteRepository {
   async addAstronaut(astronautToAdd: Astronaut) {
     try {
       const result = await astronaut.create(astronautToAdd);
@@ -24,9 +23,10 @@ export class AstronautRepo implements AstronautDataSource {
 
   async deleteAstronaut(id: unknown) {
     try {
-      await astronaut.findByIdAndDelete(id);
+      const astronautToDelete = await astronaut.findById(id);
+      if (astronautToDelete) await astronaut.deleteOne({ _id: id });
     } catch (error) {
-      return Promise.reject(error);
+      return;
     }
   }
 

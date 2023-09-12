@@ -2,7 +2,7 @@
   "name": "astronaute-eleven-labs",
   "version": "1.0.0",
   "description": "cata for eleven labs",
-  "main": "./framework/server.ts",
+  "main": "./application/server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon main"

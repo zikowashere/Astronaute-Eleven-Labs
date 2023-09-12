@@ -1,9 +1,9 @@
-import IAstronaut from "../ports/IAstronaut";
+import { AstronauteRepository } from "../ports/AstronauteRepository";
 
 export default class GetAstronauts {
-  AstronauteRepository: IAstronaut;
+  AstronauteRepository: AstronauteRepository;
 
-  constructor(astronauteRepository: IAstronaut) {
+  constructor(astronauteRepository: AstronauteRepository) {
     this.AstronauteRepository = astronauteRepository;
   }
 
