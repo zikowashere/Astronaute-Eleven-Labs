@@ -17,4 +17,13 @@ routerAstronaut.post("/", async (req: Request, res: Response) => {
   }
 });
 
+routerAstronaut.get("/", async (req: Request, res: Response) => {
+  try {
+    const result = await astronautsController.getAstronauts();
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(400).json({ message: "list of astronauts is empty " });
+  }
+});
+
 export default routerAstronaut;

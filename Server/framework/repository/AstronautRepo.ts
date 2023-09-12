@@ -13,8 +13,13 @@ export class AstronautRepo implements AstronautDataSource {
     }
   }
 
-  getAstronauts(): Promise<Astronaut[]> {
-    throw new Error("Method not implemented.");
+  async getAstronauts() {
+    try {
+      const astronauts = await astronaut.find();
+      return astronauts;
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 
   deleteAstronaut(id: unknown): void {
