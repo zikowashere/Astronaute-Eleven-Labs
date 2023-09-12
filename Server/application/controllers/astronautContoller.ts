@@ -1,7 +1,7 @@
 import AddAstronaut from "../../domain/useCases/AddAstronaut";
 import { AstronautDataSource } from "../ports/AstronautDataSource";
 import { Astronaut } from "../../domain/entities/Astronaut";
-import AstronautImpl from "../adapters/Astronaut";
+import AstronautImpl from "../adapters/AstronautImpl";
 import GetAstronauts from "../../domain/useCases/GetAstronauts";
 import UpdateAstronaut from "../../domain/useCases/UpdateAstronaut";
 import DeleteAstronaut from "../../domain/useCases/DeleteAstronaut";
