@@ -19,11 +19,11 @@
   "homepage": "https://github.com/zikowashere/Astronaute-Eleven-Labs#readme",
   "devDependencies": {
     "@types/node": "^20.6.0",
+    "eslint": "^8.49.0",
+    "jest": "^29.7.0",
     "nodemon": "^3.0.1",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   },
-  "dependencies": {
-    "eslint": "^8.49.0"
-  }
+  "dependencies": {}
 }
