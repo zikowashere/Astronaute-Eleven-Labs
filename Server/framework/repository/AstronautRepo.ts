@@ -22,8 +22,12 @@ export class AstronautRepo implements AstronautDataSource {
     }
   }
 
-  deleteAstronaut(id: unknown): void {
-    throw new Error("Method not implemented.");
+  async deleteAstronaut(id: unknown) {
+    try {
+      await astronaut.findByIdAndDelete(id);
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 
   updateAstronaute(id: unknown): Promise<Astronaut> {

@@ -26,4 +26,14 @@ routerAstronaut.get("/", async (req: Request, res: Response) => {
   }
 });
 
+routerAstronaut.delete("/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
+  try {
+    await astronautsController.deleteAstronaut(id);
+    res.status(200).json({ message: `astronaut ${id} is deleted ` });
+  } catch (error) {
+    return res.status(400).json({ message: "astronaut wasn't deleted " });
+  }
+});
+
 export default routerAstronaut;
