@@ -21,17 +21,12 @@ routerAstronaut.get("/", async (req: Request, res: Response) => {
 
 routerAstronaut.post("/", async (req: Request, res: Response) => {
   const astronaut: Astronaut = req.body;
-  try {
-    const validationAstronaut = validation(astronaut);
-    if (validationAstronaut.success) {
-      const result = await astronautsController.addAstronaut(astronaut);
-      return res.status(200).json(result);
-    } else {
-      const errorMessage = JSON.parse(validationAstronaut.error.message);
-      return res.status(500).json(errorMessage[0].message);
-    }
-  } catch (error) {
-    res.status(500).json(error);
+  const result = await astronautsController.addAstronaut(astronaut);
+
+  if (result instanceof Error) {
+    return res.status(500).json(result);
+  } else {
+    return res.status(200).json(result);
   }
 });
 
