@@ -26,11 +26,25 @@ routerAstronaut.post("/", async (req: Request, res: Response) => {
   }
 });
 
+routerAstronaut.put("/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const astronautUpdated = req.body;
+  try {
+    const astronautToUpdated = await astronautsController.updateAstronaut(
+      id,
+      astronautUpdated,
+    );
+    return res.status(200).json(astronautToUpdated);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
+
 routerAstronaut.delete("/:id", async (req: Request, res: Response) => {
   const id = req.params.id;
   try {
     await astronautsController.deleteAstronaut(id);
-    res.status(204).json();
+    return res.status(204).json();
   } catch (error) {
     return res.status(500).json(error);
   }

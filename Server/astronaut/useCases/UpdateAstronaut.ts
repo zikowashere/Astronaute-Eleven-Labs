@@ -1,3 +1,4 @@
+import { Astronaut } from "../entities/Astronaut";
 import { AstronauteRepository } from "../ports/AstronauteRepository";
 
 export default class UpdateAstronaut {
@@ -7,7 +8,7 @@ export default class UpdateAstronaut {
     this.AstronauteRepository = astronauteRepository;
   }
 
-  async updateAstronaut(id: unknown) {
-    return await this.AstronauteRepository.updateAstronaute(id);
+  async updateAstronaut(id: unknown, astronaut: Astronaut) {
+    return await this.AstronauteRepository.updateAstronaut(id, astronaut);
   }
 }

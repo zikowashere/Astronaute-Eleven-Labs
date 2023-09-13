@@ -1,8 +1,8 @@
 import { Astronaut } from "../entities/Astronaut";
 
 export interface AstronauteRepository {
-  addAstronaut(Astronaute: Astronaut): Promise<Astronaut>;
+  addAstronaut(astronaute: Astronaut): Promise<Astronaut>;
   getAstronauts(): Promise<Astronaut[]>;
   deleteAstronaut(id: unknown): void;
-  updateAstronaute(id: unknown): Promise<Astronaut>;
+  updateAstronaut(id: unknown, astronaut: Astronaut): Promise<Astronaut>;
 }

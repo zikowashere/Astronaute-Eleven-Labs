@@ -17,9 +17,9 @@ export default function astronautController(
     const Astronaut = new GetAstronauts(astronautRepo);
     return await Astronaut.getAstronauts();
   };
-  const updateAstronaut = async (id: unknown) => {
+  const updateAstronaut = async (id: unknown, astronaut: Astronaut) => {
     const Astronaut = new UpdateAstronaut(astronautRepo);
-    return await Astronaut.updateAstronaut(id);
+    return await Astronaut.updateAstronaut(id, astronaut);
   };
   const deleteAstronaut = async (id: unknown) => {
     {
