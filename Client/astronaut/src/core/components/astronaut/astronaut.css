@@ -1,0 +1,15 @@
+.astronaut {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+}
+.astronaut-informations {
+  display: flex;
+  flex-direction: row;
+}
+.astronaut-attribut {
+}
+.astronaut-actions {
+  display: flex;
+  margin-left: 20%;
+}
