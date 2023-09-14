@@ -3,21 +3,23 @@
   flex-direction: row;
   border-radius: 2px;
   margin-block: 1rem;
+  width: 30%;
 }
 .astronaut-informations {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .astronaut-actions {
+  display: flex;
+  flex-direction: row;
   margin-left: 10%;
-  
 }
-.astronaut-attribut{
+.astronaut-attribut {
   color: orange;
   margin-right: 3%;
-  
 }
-.button-action{
+.button-action {
   height: 100%;
 }

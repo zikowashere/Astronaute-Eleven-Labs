@@ -1,7 +1,7 @@
 .header {
   display: flex;
   bottom: 10%;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid orange;
 }
 .header-img {
   top: 1000%;
@@ -11,6 +11,7 @@
 .header-text {
   font-family: serif;
   font-size: 80px;
-  color: white;
+  color: orange;
+  font-weight: bold;
   margin: 4%;
 }
