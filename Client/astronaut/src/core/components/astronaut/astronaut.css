@@ -1,7 +1,6 @@
 .astronaut {
   display: flex;
   flex-direction: row;
-  border: 1px solid white;
   border-radius: 2px;
   margin-block: 1rem;
 }
@@ -20,6 +19,5 @@
   
 }
 .button-action{
- border: 1px solid white;
   height: 100%;
 }

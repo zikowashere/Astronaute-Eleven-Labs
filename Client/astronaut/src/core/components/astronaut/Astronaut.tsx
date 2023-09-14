@@ -8,14 +8,14 @@ const Astronaut = () => {
     <div className="astronaut">
       <div className="astronaut-informations">
         <p className="astronaut-attribut">firstNameAstronaut</p>
-        <p className="astronaut-attribut">secondNameAstronaut</p> 
+        <p className="astronaut-attribut">secondNameAstronaut</p>
       </div>
       <div className="astronaut-actions">
         <Button className="button-action">
-          <MdDelete color="orange" />
+          <MdDelete color="orange" size={20} />
         </Button>
         <Button className="button-action">
-          <HiPencil color="orange" />
+          <HiPencil color="orange" size={20} />
         </Button>
       </div>
     </div>
