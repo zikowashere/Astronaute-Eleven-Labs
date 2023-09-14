@@ -1,15 +1,25 @@
 .astronaut {
   display: flex;
   flex-direction: row;
-  margin-top: 5%;
+  border: 1px solid white;
+  border-radius: 2px;
+  margin-block: 1rem;
 }
 .astronaut-informations {
   display: flex;
   flex-direction: row;
 }
-.astronaut-attribut {
-}
+
 .astronaut-actions {
-  display: flex;
-  margin-left: 20%;
+  margin-left: 10%;
+  
+}
+.astronaut-attribut{
+  color: orange;
+  margin-right: 3%;
+  
+}
+.button-action{
+ border: 1px solid white;
+  height: 100%;
 }

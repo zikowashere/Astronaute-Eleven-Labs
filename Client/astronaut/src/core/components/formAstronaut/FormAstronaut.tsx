@@ -1,31 +1,43 @@
+import { Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
 import "./formAstronaut.css";
 
 const FormAstronaut = () => {
   return (
     <form>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          marginLeft: "30%",
-        }}
-      >
-        <div className="form-label">
-          <label>First Name:</label>
-          <label>Last Name:</label>
-          <label>Email:</label>
-        </div>
-        <div className="form-inputs">
-          <input type="text" id="firstName" name="firstName" />
-          <input type="text" id="lastName" name="lastName" />
-          <input type="text" id="lastName" name="lastName" />
-        </div>
+      <div className="form-inputs">
+        <TextField
+          className="form-text-field"
+          id="outlined-basic"
+          label="First Name"
+          variant="outlined"
+          margin="normal"
+          color="warning"
+        />
+        <TextField
+          className="form-text-field"
+          id="outlined-basic"
+          label="Last Name"
+          variant="outlined"
+          margin="normal"
+          color="warning"
+        />
+        <TextField
+          className="form-text-field"
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
+          margin="normal"
+          color="warning"
+        />
       </div>
-
-      <button className="form-submit-button" type="submit">
+      <Button
+        className="form-submit-button"
+        variant="contained"
+        color="warning"
+      >
         Add
-      </button>
+      </Button>
     </form>
   );
 };
