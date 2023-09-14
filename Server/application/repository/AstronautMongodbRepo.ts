@@ -2,7 +2,6 @@ import { AstronauteRepository } from "../../astronaut/ports/AstronauteRepository
 import { Astronaut } from "../../astronaut/entities/Astronaut";
 import astronaut from "../schema/astronautSchema";
 import validation from "../utils/validation";
-import { ZodError } from "zod";
 
 export class AstronautMongodbRepo implements AstronauteRepository {
   async getAstronauts() {
