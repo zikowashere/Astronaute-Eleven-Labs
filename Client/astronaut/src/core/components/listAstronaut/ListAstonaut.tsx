@@ -3,7 +3,7 @@ import Astronaut from "../astronaut/Astronaut";
 import "./listAstronaut.css";
 
 type Astronauts = {
-  astronauts: Astronaut[] | undefined;
+  astronauts: Astronaut[];
 };
 const ListAstonaut = ({ astronauts }: Astronauts) => {
   return (

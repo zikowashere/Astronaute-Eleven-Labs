@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useEffect } from "react";
 import FormAstronaut from "../core/components/formAstronaut/FormAstronaut";
 import Header from "../core/components/header/Header";
 import ListAstonaut from "../core/components/listAstronaut/ListAstonaut";
+import { contextApp } from "../core/contexts/ListAstronautContext";
 import getAstonautService from "../core/services/astronaut/getAtronautService";
 
 const Home = () => {
-  const [listAstronaut, setListAstronaut] = useState([]);
+  const { listAstronaut, setListAstronaut } = useContext(contextApp);
 
   const getListAstronauts = async () => {
     const response = await getAstonautService();

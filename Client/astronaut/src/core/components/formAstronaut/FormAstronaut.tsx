@@ -3,18 +3,19 @@ import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import "./formAstronaut.css";
 import formAstronautService from "./formAstronautService";
-import Astronaut from "../types/Astronaut";
+import Astronaut from "../../types/Astronaut";
 import { useEffect } from "react";
 import getAstonautService from "../../services/astronaut/getAtronautService";
-import { contextApp } from "../../context/listAstronautContext";
+import { contextApp } from "../../contexts/ListAstronautContext";
+import { contextForm } from "../../contexts/FormAstronautContext";
 
 const FormAstronaut = () => {
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [astronaut, setAstronaut] = useState<Astronaut>();
-  const [formData, setFormData] = useState<boolean>(false);
+  const { firstName, lastName, email, setFirstName, setLastName, setEmail } =
+    useContext(contextForm);
   const { setListAstronaut } = useContext(contextApp);
+  const [astronaut, setAstronaut] = useState<Astronaut | undefined>();
+  const [formData, setFormData] = useState<boolean>(false);
+
   const formParam = {
     setFirstName: setFirstName,
     setLastName: setLastName,

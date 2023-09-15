@@ -1,12 +1,12 @@
 import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
-import Astronaut from "../components/types/Astronaut";
+import Astronaut from "../types/Astronaut";
 
 type Props = {
   children: ReactNode;
 };
 type listAstronaut = {
-  listAstronaut: Astronaut[] | undefined;
-  setListAstronaut: Dispatch<SetStateAction<Astronaut[] | undefined>>;
+  listAstronaut: Astronaut[];
+  setListAstronaut: Dispatch<SetStateAction<Astronaut[]>>;
 };
 export const contextApp = React.createContext<listAstronaut>({
   listAstronaut: [],
@@ -14,7 +14,9 @@ export const contextApp = React.createContext<listAstronaut>({
 });
 
 export const ContextAppProvider = ({ children }: Props) => {
-  const [listAstronaut, setListAstronaut] = useState<Astronaut[]>();
+  const [listAstronaut, setListAstronaut] = useState<Astronaut[]>([
+    { firstName: "", lastName: "", email: "" },
+  ]);
 
   return (
     <contextApp.Provider value={{ listAstronaut, setListAstronaut }}>

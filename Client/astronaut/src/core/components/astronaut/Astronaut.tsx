@@ -2,16 +2,23 @@ import { MdDelete } from "react-icons/md";
 import { HiPencil } from "react-icons/hi";
 import "./astronaut.css";
 import Button from "@mui/material/Button";
-import Astronaut from "../types/Astronaut";
-import deleteAstronautService from "../../services/astronaut/deleteAstronautService";
+import Astronaut from "../../types/Astronaut";
+import astronautService from "./astronautService";
+import { useContext } from "react";
+import { contextForm } from "../../contexts/FormAstronautContext";
 
 type Props = {
   astronaut: Astronaut;
 };
 
 const Astronaut = ({ astronaut }: Props) => {
-  const deleteAstronaut = async () => {
-    await deleteAstronautService(astronaut._id);
+  const { firstName, lastName, email } = useContext(contextForm);
+
+  const deleteAstronaut = () => {
+    astronautService(astronaut).deleteAstronaut();
+  };
+  const updateAstronaut = () => {
+    astronautService(astronaut).updateAstronaut(firstName, lastName, email);
   };
 
   return (
@@ -24,7 +31,7 @@ const Astronaut = ({ astronaut }: Props) => {
         <Button className="button-action" onClick={deleteAstronaut}>
           <MdDelete color="orange" size={20} />
         </Button>
-        <Button className="button-action">
+        <Button className="button-action" onClick={updateAstronaut}>
           <HiPencil color="orange" size={20} />
         </Button>
       </div>

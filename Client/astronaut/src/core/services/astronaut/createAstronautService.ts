@@ -1,5 +1,5 @@
 import axios from "axios";
-import Astronaut from "../../components/types/Astronaut";
+import Astronaut from "../../types/Astronaut";
 
 export default async function createAstronautService(astronaut: Astronaut) {
   try {
