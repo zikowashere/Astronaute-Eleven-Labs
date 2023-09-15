@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent } from "react";
 import createAstronautService from "../../services/astronaut/createAstronautService";
-import FormAstronaut from "../../types/formAstronaut";
+import FormAstronaut from "../../types/FormAstronaut";
 
 export default function formAstronautService({
   setFirstName,

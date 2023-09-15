@@ -1,8 +1,6 @@
-import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { Children } from "../types/Children";
 
-type Props = {
-  children: ReactNode;
-};
 type form = {
   firstName: string;
   lastName: string;
@@ -20,7 +18,7 @@ export const contextForm = React.createContext<form>({
   setEmail: () => {},
 });
 
-export const ContextFormProvider = ({ children }: Props) => {
+export const ContextFormProvider = ({ children }: Children) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
