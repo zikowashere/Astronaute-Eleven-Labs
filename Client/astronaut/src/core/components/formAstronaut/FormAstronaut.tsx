@@ -5,7 +5,7 @@ import "./formAstronaut.css";
 import formAstronautService from "./formAstronautService";
 import Astronaut from "../../types/Astronaut";
 import { useEffect } from "react";
-import getAstonautService from "../../services/astronaut/getAtronautService";
+import getAstonautService from "../../useCases/astronaut/getAtronautService";
 import { contextApp } from "../../contexts/ListAstronautContext";
 import { contextForm } from "../../contexts/FormAstronautContext";
 

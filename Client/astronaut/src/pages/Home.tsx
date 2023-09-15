@@ -4,7 +4,7 @@ import FormAstronaut from "../core/components/formAstronaut/FormAstronaut";
 import Header from "../core/components/header/Header";
 import ListAstonaut from "../core/components/listAstronaut/ListAstonaut";
 import { contextApp } from "../core/contexts/ListAstronautContext";
-import getAstonautService from "../core/services/astronaut/getAtronautService";
+import getAstonautService from "../core/useCases/astronaut/getAtronautService";
 
 const Home = () => {
   const { listAstronaut, setListAstronaut } = useContext(contextApp);

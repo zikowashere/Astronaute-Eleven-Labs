@@ -1,5 +1,5 @@
-import deleteAstronautService from "../../services/astronaut/deleteAstronautService";
-import updateAstronautService from "../../services/astronaut/updateAstronautService";
+import deleteAstronautService from "../../useCases/astronaut/deleteAstronautService";
+import updateAstronautService from "../../useCases/astronaut/updateAstronautService";
 import Astronaut from "../../types/Astronaut";
 
 export default function astronautService(astronaut: Astronaut) {
