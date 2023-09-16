@@ -2,6 +2,7 @@ import app from "../../../application/server";
 import request from "supertest";
 import astronaut from "../../../application/schema/astronautSchema";
 import { Astronaut } from "../../../astronaut/entities/Astronaut";
+
 describe("GET astronauts", () => {
   describe("api/astronaut", () => {
     beforeEach(() => app);
