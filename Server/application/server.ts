@@ -10,6 +10,8 @@ server.use(express.json());
 server.use("/api/astronaut", routerAstronaut);
 const PORT = 3000;
 
-server.listen(PORT, () => {
+const app = server.listen(PORT, () => {
   console.log(`server connecting to ${PORT} ...`);
 });
+
+export default app;
