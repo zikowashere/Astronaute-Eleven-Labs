@@ -3,8 +3,9 @@ import config from "config";
 
 export default function connectDB() {
   try {
-    mongoose.connect(config.get("connectionDB"));
-    console.log("connected successfully to database...");
+    const configDB: string = config.get("connectionDB");
+    mongoose.connect(configDB);
+    console.log(`connected successfully to database ${configDB}...`);
   } catch (error) {
     console.log("connexion failed to database...", error);
   }
