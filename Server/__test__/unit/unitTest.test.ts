@@ -1,7 +1,10 @@
 import astronautSchema from "../../application/schema/astronautSchema";
 import validation from "../../application/utils/validation";
+import app from "../../application/server";
 
 describe("validation astonaut attribut", () => {
+  beforeEach(() => app);
+  afterEach(() => app.close());
   it("should return true for an astronaut object valid", () => {
     const astronaut = {
       firstName: "zakaria",

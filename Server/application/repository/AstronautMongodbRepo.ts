@@ -25,10 +25,10 @@ export class AstronautMongodbRepo implements AstronauteRepository {
         return await astronaut.create(astronautToAdd);
       } else {
         /** the astronaut is already exist in database */
-        return new Error("Astronaut already exist").message;
+        return new Error("Astronaut already exist");
       }
     } else {
-      return JSON.parse(validationAstronaut.error.message)[0].message;
+      return new Error(JSON.parse(validationAstronaut.error.message)[0]);
     }
   }
 
