@@ -35,17 +35,13 @@ routerAstronaut.put("/:id", async (req: Request, res: Response) => {
   const astronautUpdated = req.body;
 
   try {
-    const validationAstronaut = validation(astronautUpdated);
-    if (validationAstronaut.success) {
-      const astronautToUpdated = await astronautsController.updateAstronaut(
-        id,
-        astronautUpdated,
-      );
-      return res.status(200).json(astronautToUpdated);
-    } else {
-      const errorMessage = JSON.parse(validationAstronaut.error.message);
-      return res.status(500).json(errorMessage[0].message);
-    }
+    const astronautToUpdated = await astronautsController.updateAstronaut(
+      id,
+      astronautUpdated,
+    );
+    if (astronautToUpdated instanceof Error)
+      return res.status(500).json(astronautToUpdated);
+    else return res.status(200).json(astronautToUpdated);
   } catch (error) {
     return res.status(500).json(error);
   }
@@ -57,7 +53,7 @@ routerAstronaut.delete("/:id", async (req: Request, res: Response) => {
     await astronautsController.deleteAstronaut(id);
     return res.status(204).json();
   } catch (error) {
-    return res.status(500).json(error);
+    return res.status(500).json({ error: "error" });
   }
 });
 

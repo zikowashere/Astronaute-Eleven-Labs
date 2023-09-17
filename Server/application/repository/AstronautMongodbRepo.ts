@@ -2,6 +2,7 @@ import { AstronauteRepository } from "../../astronaut/ports/AstronauteRepository
 import { Astronaut } from "../../astronaut/entities/Astronaut";
 import astronaut from "../schema/astronautSchema";
 import validation from "../utils/validation";
+import mongoose from "mongoose";
 
 export class AstronautMongodbRepo implements AstronauteRepository {
   async getAstronauts() {
@@ -25,33 +26,52 @@ export class AstronautMongodbRepo implements AstronauteRepository {
         return await astronaut.create(astronautToAdd);
       } else {
         /** the astronaut is already exist in database */
-        return new Error("Astronaut already exist").message;
+        return new Error("Astronaut already exist");
       }
     } else {
-      return JSON.parse(validationAstronaut.error.message)[0].message;
+      return new Error(JSON.parse(validationAstronaut.error.message)[0]);
     }
   }
 
   async updateAstronaut(id: unknown, astronautUpdated: Astronaut) {
-    const astronautToUpdated = await astronaut.findByIdAndUpdate(
-      id,
-      astronautUpdated,
-      { new: true },
-    );
+    const validationAstronaut = validation(astronautUpdated);
 
-    if (astronautToUpdated) {
-      return astronautToUpdated;
+    if (validationAstronaut.success) {
+      const astronautToUpdated = await astronaut.findByIdAndUpdate(
+        id,
+        astronautUpdated,
+        { new: true },
+      );
+
+      if (astronautToUpdated) {
+        return astronautToUpdated;
+      } else {
+        return new Error("astronaut not found");
+      }
     } else {
-      return Promise.reject(new Error("astronaut not found"));
+      return new Error("update object of astronaut is not valid");
     }
   }
 
-  async deleteAstronaut(id: unknown) {
+  async deleteAstronaut(id: string) {
     try {
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        return Promise.reject({ status: 500, message: "ID invalide." });
+      }
       const astronautToDelete = await astronaut.findById(id);
-      if (astronautToDelete) await astronaut.deleteOne({ _id: id });
+      if (astronautToDelete) {
+        await astronaut.deleteOne({ _id: id });
+      } else {
+        return Promise.reject({
+          status: 404,
+          message: "Astronaut not found",
+        });
+      }
     } catch (error) {
-      return;
+      return Promise.reject({
+        status: 500,
+        message: "Server error",
+      });
     }
   }
 }

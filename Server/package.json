@@ -4,7 +4,7 @@
   "description": "cata for eleven labs",
   "main": "./application/server.ts",
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest --runInBand --watchAll --coverage",
     "start": "nodemon main"
   },
   "repository": {
