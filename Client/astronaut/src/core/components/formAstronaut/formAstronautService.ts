@@ -31,18 +31,12 @@ export default function formAstronautService({
     };
 
     onFormSubmit(astronautToAdd);
-    clearData();
   };
-  const clearData = () => {
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-  };
+
   return {
     lastNameHandler,
     firstNameHandler,
     emailHandler,
     submitAstronaut,
-    clearData,
   };
 }

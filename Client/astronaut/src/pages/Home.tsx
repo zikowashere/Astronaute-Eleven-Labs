@@ -1,32 +1,72 @@
-import React, { useContext } from "react";
-import { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import FormAstronaut from "../core/components/formAstronaut/FormAstronaut";
 import Header from "../core/components/header/Header";
 import ListAstonaut from "../core/components/listAstronaut/ListAstonaut";
 import { contextApp } from "../core/contexts/ListAstronautContext";
 import getAstonautService from "../core/useCases/astronaut/getAtronautService";
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import createAstronautService from "../core/useCases/astronaut/createAstronautService";
+import Astronaut from "../core/types/Astronaut";
+import { contextForm } from "../core/contexts/FormAstronautContext";
+import validate from "../core/utils/validation";
+import ToastError from "../core/components/toastError/toastError";
+import { toast } from "react-toastify";
+import useToastError from "../core/hooks/toastError/useToastError";
 
 const Home = () => {
-  const { listAstronaut, setListAstronaut } = useContext(contextApp);
+  const queryClient = useQueryClient();
+  const { clearData, message, setMessage, isValid, setIsValid } =
+    useContext(contextForm);
+  const { showToastMessage } = useToastError(message);
+  const { setListAstronaut } = useContext(contextApp);
+  const {
+    // isLoading: isAstraunautsLoading,
+    // isError: isGetAstraunautsError,
+    data: astraunautsList,
+    // error: getAstraunautsError,
+  } = useQuery({
+    queryKey: ["astronauts"],
+    queryFn: getAstonautService,
+    onSuccess: (astraunautsList) => {
+      setListAstronaut([...astraunautsList]);
+    },
+  });
 
-  const getListAstronauts = async () => {
-    const response = await getAstonautService();
-    return response.data;
+  const createAstronautMutation = useMutation(
+    (newAstronaut: Astronaut) => {
+      return createAstronautService(newAstronaut);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("astronauts");
+        clearData();
+      },
+    },
+  );
+  const handleFormValidation = (astronaut: Astronaut) => {
+    const validateAstronaut = validate(astronaut);
+    if (!validateAstronaut.success) {
+      setIsValid(!isValid);
+      setMessage(JSON.parse(validateAstronaut.error.message)[0].message);
+    } else createAstronautMutation.mutate(astronaut);
+  };
+
+  const handleFormSubmit = (astronaut: Astronaut) => {
+    handleFormValidation(astronaut);
   };
 
   useEffect(() => {
-    const fetchListAstronaut = async () => {
-      const response = await getListAstronauts();
-      setListAstronaut(response);
-    };
-    fetchListAstronaut();
-  }, [listAstronaut]);
+    if (!isValid) {
+      showToastMessage();
+    }
+  }, [isValid]);
 
   return (
     <div>
       <Header />
-      <FormAstronaut />
-      <ListAstonaut astronauts={listAstronaut} />
+      <FormAstronaut onFormSubmit={handleFormSubmit} />
+      <ListAstonaut astronauts={astraunautsList ?? []} />
+      {!isValid && <ToastError />}
     </div>
   );
 };

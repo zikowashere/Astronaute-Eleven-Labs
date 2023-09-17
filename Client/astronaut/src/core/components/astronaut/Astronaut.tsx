@@ -3,22 +3,56 @@ import { HiPencil } from "react-icons/hi";
 import "./astronaut.css";
 import Button from "@mui/material/Button";
 import Astronaut from "../../types/Astronaut";
-import astronautService from "./astronautService";
 import { useContext } from "react";
 import { contextForm } from "../../contexts/FormAstronautContext";
+import { useQueryClient, useMutation } from "react-query";
+import deleteAstronautService from "../../useCases/astronaut/deleteAstronautService";
+import updateAstronautService from "../../useCases/astronaut/updateAstronautService";
 
 type Props = {
   astronaut: Astronaut;
 };
 
 const Astronaut = ({ astronaut }: Props) => {
-  const { firstName, lastName, email } = useContext(contextForm);
+  const queryClient = useQueryClient();
+  const { firstName, lastName, email, clearData } = useContext(contextForm);
+
+  const deleteAstronautMutation = useMutation(
+    () => {
+      return deleteAstronautService(astronaut._id);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("astronauts");
+      },
+    },
+  );
 
   const deleteAstronaut = () => {
-    astronautService(astronaut).deleteAstronaut();
+    deleteAstronautMutation.mutate();
   };
+
+  const updateAstronautMutation = useMutation(
+    (param: { id: unknown; astronaut: Astronaut }) => {
+      return updateAstronautService(param.id, param.astronaut);
+    },
+    {
+      onSuccess() {
+        queryClient.invalidateQueries("astronauts");
+        clearData();
+      },
+    },
+  );
   const updateAstronaut = () => {
-    astronautService(astronaut).updateAstronaut(firstName, lastName, email);
+    const param = {
+      id: astronaut?._id,
+      astronaut: {
+        firstName,
+        lastName,
+        email,
+      },
+    };
+    updateAstronautMutation.mutate(param);
   };
 
   return (

@@ -6,10 +6,11 @@ export default async function updateAstronautService(
   astronaut: Astronaut,
 ) {
   try {
-    return await axios.put(
+    const response = await axios.put<Astronaut>(
       `http://localhost:3000/api/astronaut/${id}`,
       astronaut,
     );
+    return response.data;
   } catch (error) {
     return Promise.reject(error);
   }
