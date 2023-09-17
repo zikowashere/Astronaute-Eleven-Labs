@@ -64,13 +64,13 @@ export class AstronautMongodbRepo implements AstronauteRepository {
       } else {
         return Promise.reject({
           status: 404,
-          message: "L'astronaute n'existe pas.",
+          message: "Astronaut not found",
         });
       }
     } catch (error) {
       return Promise.reject({
         status: 500,
-        message: "Erreur interne du serveur.",
+        message: "Server error",
       });
     }
   }
