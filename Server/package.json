@@ -4,8 +4,8 @@
   "description": "cata for eleven labs",
   "main": "./application/server.ts",
   "scripts": {
-    "test": "jest --runInBand --watchAll --coverage",
-    "start": "nodemon main"
+    "test": "jest --watchAll",
+    "start": "nodemon application/server"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/zikowashere/Astronaute-Eleven-Labs#readme",
   "devDependencies": {
+    "@types/config": "^3.3.1",
     "@types/cors": "^2.8.14",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.4",
@@ -33,8 +34,11 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "config": "^3.3.9",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "mongoose": "^7.5.2",
+    "ts-node": "^10.9.1",
     "zod": "^3.22.2"
   }
 }

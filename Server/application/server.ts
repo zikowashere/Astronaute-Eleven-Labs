@@ -11,7 +11,7 @@ server.use("/api/astronaut", routerAstronaut);
 const PORT = 3000;
 
 const app = server.listen(PORT, () => {
-  console.log(`server connecting to ${PORT} ...`);
+  console.log(`server running in ${PORT} ports`);
 });
 
 export default app;
