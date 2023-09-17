@@ -8,6 +8,7 @@ import { contextForm } from "../../contexts/FormAstronautContext";
 import { useQueryClient, useMutation } from "react-query";
 import deleteAstronautService from "../../useCases/astronaut/deleteAstronautService";
 import updateAstronautService from "../../useCases/astronaut/updateAstronautService";
+import validate from "../../utils/validation";
 
 type Props = {
   astronaut: Astronaut;
@@ -15,7 +16,15 @@ type Props = {
 
 const Astronaut = ({ astronaut }: Props) => {
   const queryClient = useQueryClient();
-  const { firstName, lastName, email, clearData } = useContext(contextForm);
+  const {
+    firstName,
+    lastName,
+    email,
+    clearData,
+    isValid,
+    setIsValid,
+    setMessage,
+  } = useContext(contextForm);
 
   const deleteAstronautMutation = useMutation(
     () => {
@@ -52,7 +61,11 @@ const Astronaut = ({ astronaut }: Props) => {
         email,
       },
     };
-    updateAstronautMutation.mutate(param);
+    const validateAstronaut = validate(param.astronaut);
+    if (!validateAstronaut.success) {
+      setIsValid(!isValid);
+      setMessage(JSON.parse(validateAstronaut.error.message)[0].message);
+    } else updateAstronautMutation.mutate(param);
   };
 
   return (

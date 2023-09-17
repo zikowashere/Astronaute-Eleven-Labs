@@ -9,9 +9,8 @@ import createAstronautService from "../core/useCases/astronaut/createAstronautSe
 import Astronaut from "../core/types/Astronaut";
 import { contextForm } from "../core/contexts/FormAstronautContext";
 import validate from "../core/utils/validation";
-import ToastError from "../core/components/toastError/toastError";
-import { toast } from "react-toastify";
 import useToastError from "../core/hooks/toastError/useToastError";
+import ToastError from "../core/components/toastError/ToastError";
 
 const Home = () => {
   const queryClient = useQueryClient();
@@ -43,16 +42,13 @@ const Home = () => {
       },
     },
   );
-  const handleFormValidation = (astronaut: Astronaut) => {
+
+  const handleFormSubmit = (astronaut: Astronaut) => {
     const validateAstronaut = validate(astronaut);
     if (!validateAstronaut.success) {
       setIsValid(!isValid);
       setMessage(JSON.parse(validateAstronaut.error.message)[0].message);
     } else createAstronautMutation.mutate(astronaut);
-  };
-
-  const handleFormSubmit = (astronaut: Astronaut) => {
-    handleFormValidation(astronaut);
   };
 
   useEffect(() => {

@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import "./formAstronaut.css";
-import formAstronautService from "./formAstronautService";
 import { contextForm } from "../../contexts/FormAstronautContext";
 import Astronaut from "../../types/Astronaut";
+import useFormAstronaut from "../../hooks/formAstronaut/useFormAstronaut";
 
 type FormAstronautProps = {
   onFormSubmit: (astronaut: Astronaut) => void;
@@ -25,7 +25,7 @@ const FormAstronaut = ({ onFormSubmit }: FormAstronautProps) => {
   };
 
   const { lastNameHandler, firstNameHandler, emailHandler, submitAstronaut } =
-    formAstronautService(formParam);
+    useFormAstronaut(formParam);
 
   return (
     <form onSubmit={submitAstronaut}>
