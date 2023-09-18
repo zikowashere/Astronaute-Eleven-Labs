@@ -1,4 +1,3 @@
-# Étape 1 : Construire l'application
 FROM node:14 as builder
 
 WORKDIR /app
@@ -16,14 +15,10 @@ ENV VITE_HOST="http://localhost:3000/api/astronaut/"
 
 RUN npm run build
 
-# Étape 2 : Créer le conteneur NGINX
 FROM nginx:alpine
 
-# Copiez les fichiers de build depuis l'étape précédente
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Exposez le port sur lequel NGINX écoute (par défaut, c'est le port 80)
 EXPOSE 80
 
-# Lancer NGINX au démarrage du conteneur
 CMD ["nginx", "-g", "daemon off;"]
