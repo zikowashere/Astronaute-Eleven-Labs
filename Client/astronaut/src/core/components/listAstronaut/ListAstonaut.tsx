@@ -8,8 +8,8 @@ type Astronauts = {
 const ListAstonaut = ({ astronauts }: Astronauts) => {
   return (
     <div className="list-astronaut">
-      {astronauts?.map((astronaut) => (
-        <Astronaut astronaut={astronaut} />
+      {astronauts?.map((astronaut, index) => (
+        <Astronaut key={index} astronaut={astronaut} />
       ))}
     </div>
   );

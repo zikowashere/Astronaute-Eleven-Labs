@@ -1,57 +1,34 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import "./formAstronaut.css";
-import formAstronautService from "./formAstronautService";
-import Astronaut from "../../types/Astronaut";
-import { useEffect } from "react";
-import getAstonautService from "../../useCases/astronaut/getAtronautService";
-import { contextApp } from "../../contexts/ListAstronautContext";
 import { contextForm } from "../../contexts/FormAstronautContext";
+import Astronaut from "../../types/Astronaut";
+import useFormAstronaut from "../../hooks/formAstronaut/useFormAstronaut";
 
-const FormAstronaut = () => {
+type FormAstronautProps = {
+  onFormSubmit: (astronaut: Astronaut) => void;
+};
+
+const FormAstronaut = ({ onFormSubmit }: FormAstronautProps) => {
   const { firstName, lastName, email, setFirstName, setLastName, setEmail } =
     useContext(contextForm);
-  const { setListAstronaut } = useContext(contextApp);
-  const [astronaut, setAstronaut] = useState<Astronaut | undefined>();
-  const [formData, setFormData] = useState<boolean>(false);
 
   const formParam = {
     setFirstName: setFirstName,
     setLastName: setLastName,
     setEmail: setEmail,
-    setAstronaut: setAstronaut,
-    setFormData: setFormData,
     firstName: firstName,
     lastName: lastName,
     email: email,
-    astronaut: astronaut,
-    formData: formData,
+    onFormSubmit,
   };
 
-  const {
-    lastNameHandler,
-    firstNameHandler,
-    emailHandler,
-    submitAstronaut,
-    clearData,
-  } = formAstronautService(formParam);
-
-  const getListAstronauts = async () => {
-    const response = await getAstonautService();
-    setListAstronaut(response.data);
-  };
-
-  useEffect(() => {
-    if (formData) {
-      getListAstronauts();
-      clearData();
-      setFormData(false);
-    }
-  }, [formData]);
+  const { lastNameHandler, firstNameHandler, emailHandler, submitAstronaut } =
+    useFormAstronaut(formParam);
 
   return (
-    <form onSubmit={(e) => submitAstronaut(e)}>
+    <form onSubmit={submitAstronaut}>
       <div className="form-inputs">
         <TextField
           className="form-text-field"

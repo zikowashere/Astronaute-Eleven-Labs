@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent } from "react";
 import FormAstronaut from "../../types/FormAstronaut";
 
-export default function formAstronautService({
+const useFormAstronaut = ({
   setFirstName,
   setLastName,
   setEmail,
@@ -9,7 +9,7 @@ export default function formAstronautService({
   lastName,
   email,
   onFormSubmit,
-}: FormAstronaut) {
+}: FormAstronaut) => {
   const firstNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setFirstName(e.target.value);
@@ -31,18 +31,13 @@ export default function formAstronautService({
     };
 
     onFormSubmit(astronautToAdd);
-    clearData();
-  };
-  const clearData = () => {
-    setFirstName("");
-    setLastName("");
-    setEmail("");
   };
   return {
     lastNameHandler,
     firstNameHandler,
     emailHandler,
     submitAstronaut,
-    clearData,
   };
-}
+};
+
+export default useFormAstronaut;

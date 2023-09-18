@@ -3,22 +3,51 @@ import { HiPencil } from "react-icons/hi";
 import "./astronaut.css";
 import Button from "@mui/material/Button";
 import Astronaut from "../../types/Astronaut";
-import astronautService from "./astronautService";
 import { useContext } from "react";
 import { contextForm } from "../../contexts/FormAstronautContext";
+import validate from "../../utils/validation";
+import useDeleteAstronaut from "../../hooks/astronaut/useDeleteAstronaut";
+import useUpdateAstronaut from "../../hooks/astronaut/useUpdateAstronaut";
 
 type Props = {
   astronaut: Astronaut;
 };
 
 const Astronaut = ({ astronaut }: Props) => {
-  const { firstName, lastName, email } = useContext(contextForm);
+  const {
+    firstName,
+    lastName,
+    email,
+    clearData,
+    isValid,
+    setIsValid,
+    setMessage,
+  } = useContext(contextForm);
+  const { deleteAstronautMutation } = useDeleteAstronaut(astronaut);
+  const { updateAstronautMutation } = useUpdateAstronaut();
+  const deleteAstronautMutate = deleteAstronautMutation;
 
   const deleteAstronaut = () => {
-    astronautService(astronaut).deleteAstronaut();
+    deleteAstronautMutate.mutate();
   };
+
+  const updateAstronautMutate = updateAstronautMutation;
+
   const updateAstronaut = () => {
-    astronautService(astronaut).updateAstronaut(firstName, lastName, email);
+    const param = {
+      id: astronaut?._id,
+      astronaut: {
+        firstName,
+        lastName,
+        email,
+      },
+    };
+    const validateAstronaut = validate(param.astronaut);
+    if (!validateAstronaut.success) {
+      setIsValid(!isValid);
+      setMessage(JSON.parse(validateAstronaut.error.message)[0].message);
+    } else updateAstronautMutate.mutate(param);
+    clearData();
   };
 
   return (

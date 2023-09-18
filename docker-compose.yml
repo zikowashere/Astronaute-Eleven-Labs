@@ -1,0 +1,27 @@
+version: "3"
+services:
+  astronaut-back-end:
+    networks:
+      - my-network
+    build:
+      context: ./Server
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb-container:27017/astronautes
+
+  astronaut-font-end:
+    networks:
+      - my-network
+    build:
+      context: ./Client/astronaut
+    ports:
+      - "5176:80"
+
+  mongodb-container:
+    image: mongo:latest
+    networks:
+      - my-network
+
+networks:
+  my-network:

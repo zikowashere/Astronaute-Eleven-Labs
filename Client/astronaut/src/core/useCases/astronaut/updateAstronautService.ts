@@ -5,11 +5,10 @@ export default async function updateAstronautService(
   id: unknown,
   astronaut: Astronaut,
 ) {
+  const host = import.meta.env.VITE_HOST;
   try {
-    return await axios.put(
-      `http://localhost:3000/api/astronaut/${id}`,
-      astronaut,
-    );
+    const response = await axios.put<Astronaut>(host + `${id}`, astronaut);
+    return response.data;
   } catch (error) {
     return Promise.reject(error);
   }
