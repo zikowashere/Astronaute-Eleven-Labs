@@ -6,9 +6,9 @@ import Astronaut from "../../types/Astronaut";
 import { useContext } from "react";
 import { contextForm } from "../../contexts/FormAstronautContext";
 import { useQueryClient, useMutation } from "react-query";
-import deleteAstronautService from "../../useCases/astronaut/deleteAstronautService";
 import updateAstronautService from "../../useCases/astronaut/updateAstronautService";
 import validate from "../../utils/validation";
+import useDeleteAstronaut from "../../hooks/astronaut/useDeleteAstronaut";
 
 type Props = {
   astronaut: Astronaut;
@@ -25,20 +25,11 @@ const Astronaut = ({ astronaut }: Props) => {
     setIsValid,
     setMessage,
   } = useContext(contextForm);
-
-  const deleteAstronautMutation = useMutation(
-    () => {
-      return deleteAstronautService(astronaut._id);
-    },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("astronauts");
-      },
-    },
-  );
+  const { deleteAstronautMutation } = useDeleteAstronaut(astronaut);
+  const deleteAstronautMutate = deleteAstronautMutation;
 
   const deleteAstronaut = () => {
-    deleteAstronautMutation.mutate();
+    deleteAstronautMutate.mutate();
   };
 
   const updateAstronautMutation = useMutation(
