@@ -5,17 +5,15 @@ import Button from "@mui/material/Button";
 import Astronaut from "../../types/Astronaut";
 import { useContext } from "react";
 import { contextForm } from "../../contexts/FormAstronautContext";
-import { useQueryClient, useMutation } from "react-query";
-import updateAstronautService from "../../useCases/astronaut/updateAstronautService";
 import validate from "../../utils/validation";
 import useDeleteAstronaut from "../../hooks/astronaut/useDeleteAstronaut";
+import useUpdateAstronaut from "../../hooks/astronaut/useUpdateAstronaut";
 
 type Props = {
   astronaut: Astronaut;
 };
 
 const Astronaut = ({ astronaut }: Props) => {
-  const queryClient = useQueryClient();
   const {
     firstName,
     lastName,
@@ -26,23 +24,15 @@ const Astronaut = ({ astronaut }: Props) => {
     setMessage,
   } = useContext(contextForm);
   const { deleteAstronautMutation } = useDeleteAstronaut(astronaut);
+  const { updateAstronautMutation } = useUpdateAstronaut();
   const deleteAstronautMutate = deleteAstronautMutation;
 
   const deleteAstronaut = () => {
     deleteAstronautMutate.mutate();
   };
 
-  const updateAstronautMutation = useMutation(
-    (param: { id: unknown; astronaut: Astronaut }) => {
-      return updateAstronautService(param.id, param.astronaut);
-    },
-    {
-      onSuccess() {
-        queryClient.invalidateQueries("astronauts");
-        clearData();
-      },
-    },
-  );
+  const updateAstronautMutate = updateAstronautMutation;
+
   const updateAstronaut = () => {
     const param = {
       id: astronaut?._id,
@@ -56,7 +46,8 @@ const Astronaut = ({ astronaut }: Props) => {
     if (!validateAstronaut.success) {
       setIsValid(!isValid);
       setMessage(JSON.parse(validateAstronaut.error.message)[0].message);
-    } else updateAstronautMutation.mutate(param);
+    } else updateAstronautMutate.mutate(param);
+    clearData();
   };
 
   return (
