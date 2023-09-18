@@ -1,0 +1,13 @@
+FROM node:14
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY application ./application
+COPY astronaut ./astronaut
+COPY config ./config
+COPY tsconfig.json ./
+
+RUN npm install 
+ENV connection_db="mongodb://mongodb-container:27017/astronautes"
+CMD ["npm", "start"]
