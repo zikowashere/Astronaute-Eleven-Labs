@@ -1,0 +1,28 @@
+.rocket-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  animation: moveRocket 10s infinite linear;
+}
+
+.rocket {
+  width: 100px;
+  height: 100px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+}
+
+@keyframes moveRocket {
+  0% {
+    transform: translateX(0%) translateY(0%);
+  }
+  100% {
+    transform: translateX(100%) translateY(-100%);
+  }
+}

@@ -3,7 +3,8 @@
   flex-direction: row;
   border-radius: 2px;
   margin-block: 1rem;
-  width: 30%;
+  width: 50%;
+  height: 10%;
 }
 .astronaut-informations {
   display: flex;
@@ -14,11 +15,10 @@
 .astronaut-actions {
   display: flex;
   flex-direction: row;
-  margin-left: 10%;
 }
 .astronaut-attribut {
-  color: orange;
-  margin-right: 3%;
+  color: blue;
+  margin-right: 1%;
 }
 .button-action {
   height: 100%;

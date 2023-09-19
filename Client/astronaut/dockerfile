@@ -11,7 +11,7 @@ RUN npm install
 
 COPY src ./src
 
-ENV VITE_HOST="http://localhost:3000/api/astronaut/"
+ENV VITE_HOST="http://localhost:3000/api/astronaut"
 
 RUN npm run build
 
