@@ -1,15 +1,19 @@
 .header {
   display: flex;
-  justify-content: flex-start;
-  border-bottom: 1px solid blue;
+  align-items: center;
+  justify-content: center;
   height: 200px;
   margin-bottom: 3%;
+  position: relative;
 }
 
 .header-img {
-  height: 100%;
-  width: 30%;
-  margin-right: 10%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  width: 20rem;
+  z-index: 2;
 }
 
 .header-text {
@@ -18,4 +22,5 @@
   font-size: 80px;
   color: blue;
   font-weight: bold;
+  z-index: 2;
 }

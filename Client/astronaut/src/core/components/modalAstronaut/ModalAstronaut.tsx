@@ -49,7 +49,7 @@ const ModalAstronaut = ({
   };
 
   return (
-    <div>
+    <>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Astronaut</DialogTitle>
         <DialogContent>
@@ -101,7 +101,7 @@ const ModalAstronaut = ({
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 };
 

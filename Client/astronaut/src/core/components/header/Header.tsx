@@ -4,13 +4,15 @@ import Rocket from "../animation/Rocket";
 
 const Header = () => {
   return (
-    <div className="header">
-      <img className="header-img" src={astronautImg} />
-      <div className="header-text">
-        <p>NASA 🚀</p>
+    <>
+      <div className="header">
+        <img className="header-img" src={astronautImg} />
+        <div className="header-text">
+          <p>NASA 🚀</p>
+        </div>
+        <Rocket />
       </div>
-      <Rocket />
-    </div>
+    </>
   );
 };
 

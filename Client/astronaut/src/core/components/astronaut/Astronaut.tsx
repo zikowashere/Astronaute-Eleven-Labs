@@ -81,7 +81,7 @@ const Astronaut = ({ astronaut }: Props) => {
 
   return (
     <Card className="astronaut">
-      <CardContent className="astronaut-informations">
+      <CardContent component={"div"} className="astronaut-informations">
         <div className="astronaut-informations">
           <p className="astronaut-attribut">{astronaut.firstName}</p>
           <p className="astronaut-attribut">{astronaut.lastName}</p>

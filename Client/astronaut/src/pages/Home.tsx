@@ -10,6 +10,8 @@ import ToastError from "../core/components/toastError/ToastError";
 import useGetAstronaut from "../core/hooks/astronaut/useGetAstronaut";
 import { Button } from "@mui/material";
 import ModalAstronaut from "../core/components/modalAstronaut/ModalAstronaut";
+import styles from "./Home.module.css";
+import Rocket from "../core/components/animation/Rocket";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -78,25 +80,30 @@ const Home = () => {
   }, [isValid]);
 
   return (
-    <div>
-      <Header />
-      <Button onClick={handleClickOpen} variant="outlined">
-        Add Astonaute
-      </Button>
-      <ModalAstronaut
-        open={open}
-        handleClose={handleClose}
-        onFormSubmit={handleFormSubmit}
-        firstNameAstronaut={firstNameAstronaut}
-        lastNameAstronaut={lastNameAstronaut}
-        emailAstronaut={emailAstronaut}
-        changeFirstName={addFirstName}
-        changeLastName={addLastName}
-        changeEmail={addEmail}
-      />
-      <ListAstonaut astronauts={astraunautsList ?? []} />
-      {!isValid && <ToastError />}
-    </div>
+    <>
+      <div>
+        <Header />
+        <div className={styles.addbutton}>
+          <Button onClick={handleClickOpen} variant="outlined">
+            Add Astonaute
+          </Button>
+        </div>
+        <ModalAstronaut
+          open={open}
+          handleClose={handleClose}
+          onFormSubmit={handleFormSubmit}
+          firstNameAstronaut={firstNameAstronaut}
+          lastNameAstronaut={lastNameAstronaut}
+          emailAstronaut={emailAstronaut}
+          changeFirstName={addFirstName}
+          changeLastName={addLastName}
+          changeEmail={addEmail}
+        />
+        <ListAstonaut astronauts={astraunautsList ?? []} />
+        {!isValid && <ToastError />}
+      </div>
+      {/* <Rocket /> */}
+    </>
   );
 };
 

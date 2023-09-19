@@ -5,6 +5,7 @@
   margin-block: 1rem;
   width: 50%;
   height: 10%;
+  z-index: 2;
 }
 .astronaut-informations {
   display: flex;
