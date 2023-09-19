@@ -7,7 +7,7 @@ export default async function updateAstronautService(
 ) {
   const host = import.meta.env.VITE_HOST;
   try {
-    const response = await axios.put<Astronaut>(host + `${id}`, astronaut);
+    const response = await axios.put<Astronaut>(host + `/${id}`, astronaut);
     return response.data;
   } catch (error) {
     return Promise.reject(error);

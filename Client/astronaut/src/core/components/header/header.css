@@ -1,17 +1,21 @@
 .header {
   display: flex;
-  bottom: 10%;
-  border-bottom: 1px solid orange;
+  justify-content: flex-start;
+  border-bottom: 1px solid blue;
+  height: 200px;
+  margin-bottom: 3%;
 }
+
 .header-img {
-  top: 1000%;
-  width: 20%;
-  margin-right: 20%;
+  height: 100%;
+  width: 30%;
+  margin-right: 10%;
 }
+
 .header-text {
-  font-family: serif;
+  display: flex;
+  align-items: center;
   font-size: 80px;
-  color: orange;
+  color: blue;
   font-weight: bold;
-  margin: 4%;
 }
