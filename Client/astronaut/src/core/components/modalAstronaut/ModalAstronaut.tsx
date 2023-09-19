@@ -60,7 +60,7 @@ const ModalAstronaut = ({
               id="firstName"
               label="First Name"
               type="text"
-              value={firstName}
+              value={firstNameAstronaut}
               onChange={(e) => {
                 setFirstName(e.target.value);
                 changeFirstName(e.target.value);
@@ -73,7 +73,7 @@ const ModalAstronaut = ({
               id="lastName"
               label="Last Name"
               type="text"
-              value={lastName}
+              value={lastNameAstronaut}
               onChange={(e) => {
                 setLastName(e.target.value);
                 changeLastName(e.target.value);
@@ -86,7 +86,7 @@ const ModalAstronaut = ({
               id="email"
               label="Email"
               type="text"
-              value={email}
+              value={emailAstronaut}
               onChange={(e) => {
                 setEmail(e.target.value);
                 changeEmail(e.target.value);
