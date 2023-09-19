@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Header from "../core/components/header/Header";
 import ListAstonaut from "../core/components/listAstronaut/ListAstonaut";
 import { useMutation, useQueryClient } from "react-query";
@@ -13,7 +13,7 @@ import ModalAstronaut from "../core/components/modalAstronaut/ModalAstronaut";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
-  const [firstNameAstronaut, setFirstNameAstronuat] = useState("");
+  const [firstNameAstronaut, setFirstNameAstronaut] = useState("");
   const [lastNameAstronaut, setLastNameAstronaut] = useState("");
   const [emailAstronaut, setEmailAstronaut] = useState("");
 
@@ -22,10 +22,11 @@ const Home = () => {
   };
 
   const handleClose = () => {
+    clearData();
     setOpen(false);
   };
   const addFirstName = (newFirstName: string) => {
-    setFirstNameAstronuat(newFirstName);
+    setFirstNameAstronaut(newFirstName);
   };
 
   const addLastName = (newLastName: string) => {
@@ -36,7 +37,7 @@ const Home = () => {
     setEmailAstronaut(newEmail);
   };
   const clearData = () => {
-    setFirstNameAstronuat("");
+    setFirstNameAstronaut("");
     setLastNameAstronaut("");
     setEmailAstronaut("");
   };
@@ -58,7 +59,6 @@ const Home = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("astronauts");
-        clearData();
       },
     },
   );
@@ -68,13 +68,13 @@ const Home = () => {
     if (!validateAstronaut.success) {
       setIsValid(!isValid);
       setMessage(JSON.parse(validateAstronaut.error.message)[0].message);
-    } else createAstronautMutation.mutate(astronaut);
+    } else {
+      createAstronautMutation.mutate(astronaut);
+    }
   };
 
   useEffect(() => {
-    if (!isValid) {
-      showToastMessage();
-    }
+    if (!isValid) showToastMessage();
   }, [isValid]);
 
   return (
